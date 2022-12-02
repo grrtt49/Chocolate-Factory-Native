@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { Button, Card, Headline, Modal, Paragraph, Subheading, Title, useTheme } from "react-native-paper";
-import { Header } from "react-native/Libraries/NewAppScreen";
+import CalendarLink from "../components/CalendarLink";
 
 export default function AppointmentsPage (props) {
 
@@ -53,6 +53,7 @@ export default function AppointmentsPage (props) {
                 </Card.Content>
                 <Card.Actions>
                     <Button onPress={() => setCancelWarningIndex(index)} textColor={theme.colors.error}>Cancel</Button>
+                    <CalendarLink appointment={appointment}></CalendarLink>
                 </Card.Actions>
             </Card>
         );

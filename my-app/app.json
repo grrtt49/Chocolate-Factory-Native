@@ -20,6 +20,9 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "infoPlist": {
+        "NSRemindersUsageDescription": "Create a calendar event"
+      },
       "bundleIdentifier": "com.grrtt49.myapp"
     },
     "android": {
@@ -27,6 +30,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "permissions": [
+        "READ_CALENDAR",
+        "WRITE_CALENDAR"
+      ],
       "package": "com.grrtt49.myapp"
     },
     "web": {
