@@ -91,11 +91,11 @@ export default function ReviewsPage(props) {
                 marginTop: 20
             }}>
                 <TextInput 
-                    label="Your name"
+                    label="Review Title"
                     mode="outlined"
                     autoComplete="name"
-                    value={reviewName}
-                    onChangeText={(text) => {setReviewName(text)}}
+                    value={reviewTitle}
+                    onChangeText={(text) => {setReviewTitle(text)}}
                     style={{width: 250, alignSelf: "center"}}
                 />
             </View>
@@ -105,11 +105,11 @@ export default function ReviewsPage(props) {
                 marginTop: 20
             }}>
                 <TextInput 
-                    label="Review Title"
+                    label="Your name"
                     mode="outlined"
                     autoComplete="name"
-                    value={reviewTitle}
-                    onChangeText={(text) => {setReviewTitle(text)}}
+                    value={reviewName}
+                    onChangeText={(text) => {setReviewName(text)}}
                     style={{width: 250, alignSelf: "center"}}
                 />
             </View>

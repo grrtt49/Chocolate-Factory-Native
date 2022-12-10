@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { View, Text, ScrollView } from "react-native";
-import { Button, Card, Headline, Modal, Paragraph, Subheading, Title, useTheme } from "react-native-paper";
+import { View, Text, ScrollView, Share } from "react-native";
+import { Button, Card, Headline, IconButton, Modal, Paragraph, Subheading, Title, useTheme } from "react-native-paper";
 import CalendarLink from "../components/CalendarLink";
 
 export default function AppointmentsPage (props) {
@@ -11,6 +11,28 @@ export default function AppointmentsPage (props) {
     const [cancelWarningIndex, setCancelWarningIndex] = useState(false);
 
     const modalStyle = {margin: 20};
+
+    const onShare = async (appointment) => {
+        try {
+          const result = await Share.share({
+            message:
+              'Come join me at Adell\'s Chocolate Factory on ' + appointment.date.toLocaleDateString() + ' at ' + appointment.time + ':00 pm',
+          });
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // shared with activity type of result.activityType
+            } 
+            else {
+              // shared
+            }
+          } 
+          else if (result.action === Share.dismissedAction) {
+                // dismissed
+          }
+        } catch (error) {
+            alert(error.message);
+        }
+    };
 
     const cancelAppointment = () => {
         removeAppointment(cancelWarningIndex);
@@ -46,13 +68,18 @@ export default function AppointmentsPage (props) {
         console.log(appointment);
         return (
             <Card key={index} elevation={3} style={{margin: 15}}>
+                <Card.Actions>
+                    <IconButton mode="default" icon="share-variant" onPress={() => onShare(appointment)}/>
+                </Card.Actions>
                 <Card.Content>
                     <Title>Appointment for {appointment.people} {appointment.people == 1 ? "person" : "people"}</Title>
                     <Subheading>{appointment.email} </Subheading>
                     <Subheading>{appointment.date.toLocaleDateString()} at {appointment.time}:00 pm </Subheading>
                 </Card.Content>
-                <Card.Actions>
+                <View style={{height: 6}}></View>
+                <Card.Actions style={{padding: 15}}>
                     <Button onPress={() => setCancelWarningIndex(index)} textColor={theme.colors.error}>Cancel</Button>
+                    <View style={{width: 3}}></View>
                     <CalendarLink appointment={appointment}></CalendarLink>
                 </Card.Actions>
             </Card>

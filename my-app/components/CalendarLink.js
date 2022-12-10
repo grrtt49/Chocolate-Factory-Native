@@ -33,6 +33,7 @@ export default function CalendarLink(props) {
             const added = await Calendar.createEventAsync(calendar.id, event);
             if(added) {
                 setEventID(added);
+                Calendar.openEventInCalendar(added);
             }
         }
     };
@@ -49,6 +50,8 @@ export default function CalendarLink(props) {
     return (
         <Button
             onPress={handleClick}
+            mode='outlined'
+            icon={eventID === false ? 'calendar' : 'calendar-remove'}
         >
             {eventID === false ? "Add to calendar" : "Remove from calendar"}
         </Button>
